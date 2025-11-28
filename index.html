@@ -223,7 +223,13 @@
                 })
                 .then(repos => {
                     loadingSpinner.style.display = 'none';
-                    const filteredRepos = repos.filter(repo => !repo.fork).slice(0, NUMBER_OF_PROJECTS);
+                    
+                    // Filter out forks AND the portfolio repository itself
+                    const filteredRepos = repos.filter(repo => {
+                        const isFork = repo.fork;
+                        const isPortfolio = repo.name.toLowerCase() === `${GITHUB_USERNAME.toLowerCase()}.github.io`;
+                        return !isFork && !isPortfolio;
+                    }).slice(0, NUMBER_OF_PROJECTS);
                     
                     if (filteredRepos.length === 0) {
                         projectGrid.innerHTML = `<p class="text-gray-600 text-center col-span-full">No public repositories found for this user.</p>`;
