@@ -76,6 +76,8 @@
     .about-text p { color: var(--muted); margin-bottom: 16px; }
     .skills { display: flex; flex-wrap: wrap; gap: 10px; }
     .skill-tag { background: var(--card); border: 1px solid var(--border); color: var(--text); font-size: 0.85rem; padding: 6px 14px; border-radius: 999px; }
+    a.skill-tag { color: var(--text); text-decoration: none; }
+    a.skill-tag:hover { color: var(--accent); border-color: var(--accent); }
 
     /* Projects */
     .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
@@ -243,9 +245,9 @@
         <h2>Certifications</h2>
         <p class="section-sub">Professional credentials in cloud, ML, and data analytics.</p>
         <div class="skills">
-          <span class="skill-tag">AWS AI &amp; ML Scholarship</span>
-          <span class="skill-tag">Google Data Analytics Professional</span>
-          <span class="skill-tag">Google Cloud AI/ML</span>
+          <a href="https://aws.amazon.com/ai-ml-scholarship/" target="_blank" class="skill-tag" style="text-decoration:none;">AWS AI &amp; ML Scholarship</a>
+          <a href="https://www.coursera.org/professional-certificates/google-data-analytics" target="_blank" class="skill-tag" style="text-decoration:none;">Google Data Analytics Professional</a>
+          <a href="https://cloud.google.com/learn/certifications" target="_blank" class="skill-tag" style="text-decoration:none;">Google Cloud AI/ML</a>
         </div>
       </div>
     </section>
