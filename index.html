@@ -1,297 +1,265 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shedrack Eze - Data Scientist Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* A very light gray background */
-        }
-        .gradient-text {
-            background: linear-gradient(to right, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .card-hover-effect {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shedrack Eze — ML Engineer</title>
+  <meta name="description" content="Shedrack Eze — Machine Learning Engineer, MS EAI at Carnegie Mellon University Africa. Research, ML surrogates for solar PV, agentic AI, and open-source.">
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-soft: #111a2e;
+      --card: #16213a;
+      --border: #24324f;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-2: #8b5cf6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11, 17, 32, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .logo { font-weight: 700; font-size: 1.25rem; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 0.95rem; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .btn {
+      display: inline-block; background: var(--accent); color: #fff !important;
+      padding: 8px 18px; border-radius: 8px; font-weight: 500; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #2563eb; text-decoration: none; }
+    .menu-btn { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+    .mobile-menu { display: none; flex-direction: column; gap: 12px; padding: 12px 0 20px; }
+    .mobile-menu a { color: var(--muted); }
+    .mobile-menu.open { display: flex; }
+
+    /* Hero */
+    .hero { padding: 96px 0 64px; text-align: center; }
+    .hero img {
+      width: 128px; height: 128px; border-radius: 50%;
+      border: 3px solid var(--border); margin-bottom: 24px;
+      object-fit: cover;
+    }
+    .hero h1 { font-size: 2.75rem; font-weight: 700; margin-bottom: 12px; }
+    .gradient { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--muted); font-size: 1.15rem; max-width: 640px; margin: 0 auto 28px; }
+    .socials { display: flex; justify-content: center; gap: 20px; font-size: 1.4rem; }
+    .socials a { color: var(--muted); }
+    .socials a:hover { color: var(--accent); }
+
+    /* Sections */
+    section { padding: 72px 0; }
+    section:nth-of-type(even) { background: var(--bg-soft); }
+    h2 { font-size: 1.9rem; font-weight: 700; margin-bottom: 8px; }
+    .section-sub { color: var(--muted); margin-bottom: 40px; max-width: 640px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag { background: var(--card); border: 1px solid var(--border); color: var(--text); font-size: 0.85rem; padding: 6px 14px; border-radius: 999px; }
+
+    /* Projects */
+    .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.3); }
+    .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+    .card .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .card .tags span { font-size: 0.75rem; color: var(--accent); background: rgba(59,130,246,0.12); padding: 3px 10px; border-radius: 999px; }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact p { color: var(--muted); max-width: 560px; margin: 0 auto 32px; }
+    .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-btn { display: block; }
+      .hero h1 { font-size: 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 64px 0 40px; }
+    }
+  </style>
 </head>
-<body class="text-gray-800">
+<body>
 
-    <!-- Header & Navigation -->
-    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <a href="#" class="text-2xl font-bold gradient-text">SE</a>
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
-                    <a href="#projects" class="text-gray-600 hover:text-blue-500 transition duration-300">Projects</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-500 transition duration-300">Contact</a>
-                    <a href="#" id="resume-link-desktop" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition duration-300">Resume</a>
-                </nav>
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a href="#" class="logo">SE</a>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a href="resume.pdf" target="_blank" class="btn">Resume</a>
+        </nav>
+        <button class="menu-btn" id="menu-btn" aria-label="Menu">☰</button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <a href="resume.pdf" target="_blank">Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <img src="https://avatars.githubusercontent.com/u/82411073?v=4" alt="Shedrack Eze">
+        <h1>Hi, I'm <span class="gradient">Shedrack Eze</span></h1>
+        <p>Machine Learning Engineer and MS EAI candidate at Carnegie Mellon University Africa. I build ML surrogates for solar PV systems, agentic AI tools, and open-source projects.</p>
+        <div class="socials">
+          <a href="https://github.com/Shedrackeze002" target="_blank" aria-label="GitHub">GitHub</a>
+          <a href="https://linkedin.com/in/eze-shedrack" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+          <a href="https://x.com/maphlux" target="_blank" aria-label="X">X</a>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">About</a>
-            <a href="#projects" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Projects</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
-            <a href="#" id="resume-link-mobile" target="_blank" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Resume</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="section-sub">ML Engineer pursuing an M.S. in Engineering AI at CMU-Africa, researching ML surrogates for solar PV system design in West Africa.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm a Machine Learning Engineer with a background in Agricultural &amp; Environmental Engineering (First Class Honours, FUTA). I'm currently a Research Assistant at the DEAL Lab, where I built a PV performance modeling pipeline that validated NASA POWER, ERA5, and MERRA-2 irradiance against 23-station WAPP ground data (R² = 0.974) and decomposed a 59% PV performance gap into soiling and storage effects.</p>
+            <p>Before grad school, I was Senior Data Analyst at Fluna, where I drove 60% business growth in 18 months through data mining pipelines that expanded customer acquisition by 300+ companies. I care about building things that work in the real world — especially for Africa's energy and agriculture sectors.</p>
+          </div>
+          <div>
+            <h3 style="margin-bottom:16px;">Skills</h3>
+            <div class="skills">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">scikit-learn</span>
+              <span class="skill-tag">Transformers</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">Pandas / NumPy</span>
+              <span class="skill-tag">pvlib</span>
+              <span class="skill-tag">SHAP</span>
+              <span class="skill-tag">Agentic AI</span>
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">AutoGen</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Jupyter</span>
+              <span class="skill-tag">Linux</span>
+            </div>
+          </div>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <!-- Hero Section -->
-    <main id="home" class="pt-24 sm:pt-32">
-        <section class="container mx-auto px-6 py-16 text-center">
-            <div class="max-w-4xl mx-auto">
-                <img id="profile-pic" src="https://placehold.co/128x128/E2E8F0/4A5568?text=SE" alt="Shedrack Eze" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                    <span class="gradient-text">Hi, I'm Shedrack Eze</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-600 mb-8">
-                    A Data Scientist passionate about uncovering insights from data and building intelligent solutions. I specialize in machine learning, data visualization, and statistical analysis.
-                </p>
-                <div class="flex justify-center space-x-6">
-                    <a id="github-link" href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 text-3xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a id="linkedin-link" href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 text-3xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a id="twitter-link" href="#" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 text-3xl">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <p class="section-sub">Selected work — research, engineering, and open-source. More on my GitHub.</p>
+        <div class="project-grid">
 
-        <!-- About Me Section -->
-        <section id="about" class="bg-white py-20 sm:py-24">
-            <div class="container mx-auto px-6">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="text-center md:text-left">
-                        <h2 class="text-3xl font-bold mb-4">About Me</h2>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Hello! I'm a detail-oriented Data Scientist with a strong foundation in statistics and computer science. My journey into data science was driven by a curiosity to understand the stories hidden within data. I enjoy the process of transforming raw data into actionable insights that can drive business decisions.
-                        </p>
-                        <p class="text-gray-600 leading-relaxed">
-                            In my work, I leverage Python and its powerful libraries like Pandas, Scikit-learn, and TensorFlow. I'm also proficient in SQL for data querying and Tableau for creating compelling visualizations. I'm always eager to learn new technologies and methodologies to stay at the forefront of this ever-evolving field.
-                        </p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-4 text-center md:text-left">My Skills</h3>
-                        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                            <!-- Skills will be dynamically inserted here -->
-                            <div id="skills-container" class="flex flex-wrap gap-3 justify-center md:justify-start"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <div class="card">
+            <h3>ML Surrogates for PV System Design</h3>
+            <p>DEAL Lab research: physics-based PV-plus-storage model under dust for West Africa. Validated irradiance products against 23-station WAPP ground data (R² = 0.974); decomposed a 59% performance gap into soiling and storage effects.</p>
+            <div class="tags"><span>PyTorch</span><span>pvlib</span><span>Energy</span></div>
+          </div>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 sm:py-24">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">My Projects</h2>
-                <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-                    Here are some of the projects I've worked on. You can find more on my GitHub profile. The data is fetched live from the GitHub API.
-                </p>
-                <div id="project-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- GitHub projects will be dynamically inserted here -->
-                </div>
-                <div id="loading-spinner" class="text-center py-8">
-                    <i class="fas fa-spinner fa-spin text-4xl text-blue-500"></i>
-                    <p class="mt-2 text-gray-600">Fetching projects...</p>
-                </div>
-                 <div class="text-center mt-12">
-                    <a id="view-more-github" href="#" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
-                        View More on GitHub <i class="fab fa-github ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
+          <div class="card">
+            <h3>Fluna — Agri-Export Data Platform</h3>
+            <p>Built customer databases and data mining pipelines that expanded customer acquisition by 300+ companies and drove 60% business growth in 18 months. A/B testing campaigns, CRM integration, revenue up 30% YoY.</p>
+            <div class="tags"><span>SQL</span><span>CRM</span><span>A/B Testing</span></div>
+          </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="bg-white py-20 sm:py-24">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
-                <p class="text-gray-600 max-w-xl mx-auto mb-8">
-                    I'm currently open to new opportunities and collaborations. If you have a project in mind or just want to connect, feel free to send me an email.
-                </p>
-                <a id="email-link" href="mailto:ezeshedrack002@gmail.com" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-                    Say Hello
-                </a>
-            </div>
-        </section>
-    </main>
+          <div class="card">
+            <h3>MetalForge — Local Video Generation</h3>
+            <p>Native Metal inference engine for AI video models on Apple Silicon — H3, Wan 2.2, LTX-2.5, Wan-Animate-2 — built from scratch in C + Metal, no PyTorch/MPS dependency, with a local web UI.</p>
+            <div class="tags"><span>C</span><span>Metal</span><span>Open Source</span></div>
+          </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Shedrack Eze. All Rights Reserved.</p>
+          <div class="card">
+            <h3>Zindi Competitions</h3>
+            <p>Competitive ML on African datasets: fine-tuned BERT to 90.7% accuracy, VLM fine-tuning for ASR, ensemble methods. Top-tier leaderboard results across multiple challenges.</p>
+            <div class="tags"><span>NLP</span><span>CV</span><span>Ensembles</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Coffee Pricing Model</h3>
+            <p>Automated daily coffee futures pricing signal with dual-basis analysis (stale vs current basis), live data pipeline, and a 2-page decision brief. Built for Fluna's export operations.</p>
+            <div class="tags"><span>Python</span><span>Futures</span><span>Automation</span></div>
+          </div>
+
+          <div class="card">
+            <h3>PV Soiling &amp; Storage Analysis</h3>
+            <p>Soiling loss quantification across West African climate zones using MERRA-2 aerosol data and Koppen-Geiger classification; battery state-of-charge validation with three independent estimators.</p>
+            <div class="tags"><span>MERRA-2</span><span>Koppen-Geiger</span><span>SoC</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Movie Sentiment Analysis</h3>
+            <p>Fine-tuned BERT on 50,000 IMDB reviews to 90.71% accuracy, overcoming GPU memory limits with gradient accumulation and mixed-precision training. Deployed a live app on Hugging Face Spaces.</p>
+            <div class="tags"><span>PyTorch</span><span>BERT</span><span>Hugging Face</span></div>
+          </div>
+
+          <div class="card">
+            <h3>Dog Breed Image Classifier</h3>
+            <p>Compared AlexNet, ResNet, and VGG for 133-class identification with transfer learning; achieved optimal accuracy with VGG and reduced training time by 70% via ImageNet pretraining.</p>
+            <div class="tags"><span>CNNs</span><span>Transfer Learning</span><span>PyTorch</span></div>
+          </div>
+
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        // --- START CONFIGURATION ---
-        const GITHUB_USERNAME = 'Shedrackeze002'; // IMPORTANT: Replace with your GitHub username
-        const NUMBER_OF_PROJECTS = 6; // Number of projects to display
-        
-        const PERSONAL_INFO = {
-            name: "Shedrack Eze",
-            profilePic: "https://avatars.githubusercontent.com/u/82411073?v=4", // URL for your profile picture
-            email: "jane.doe.datasci@email.com",
-            resumeUrl: "#", // Link to your resume PDF
-            socials: {
-                github: "https://github.com/Shedrackeze002", // Replace with your full GitHub URL
-                linkedin: "https://linkedin.com/in/eze-shedrack",
-                twitter: "https://x.com/maphlux"
-            }
-        };
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container contact">
+        <h2>Get In Touch</h2>
+        <p>I'm open to research collaborations, ML engineering roles, and interesting problems — especially in energy, agriculture, and AI for Africa.</p>
+        <div class="contact-links">
+          <a href="mailto:seze@andrew.cmu.edu" class="btn">seze@andrew.cmu.edu</a>
+          <a href="mailto:ezeshedrack002@gmail.com" class="btn" style="background:var(--bg-soft);border:1px solid var(--border);">ezeshedrack002@gmail.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        const SKILLS = [
-            'Python', 'Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'PyTorch',
-            'SQL', 'PostgreSQL', 'BigQuery', 'Data Visualization', 'Tableau',
-            'Matplotlib', 'Seaborn', 'Statistical Modeling', 'A/B Testing', 'Git & GitHub'
-        ];
-        // --- END CONFIGURATION ---
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Shedrack Eze. Built with Docker + Caddy.</p>
+    </div>
+  </footer>
 
-
-        // --- UI & DATA POPULATION SCRIPT ---
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- Personal Information Setup ---
-            document.title = `${PERSONAL_INFO.name} - Data Scientist Portfolio`;
-            document.getElementById('profile-pic').src = PERSONAL_INFO.profilePic;
-            document.querySelector('#home h1').innerHTML = `<span class="gradient-text">Hi, I'm ${PERSONAL_INFO.name}</span>`;
-            document.getElementById('email-link').href = `mailto:${PERSONAL_INFO.email}`;
-            document.getElementById('resume-link-desktop').href = PERSONAL_INFO.resumeUrl;
-            document.getElementById('resume-link-mobile').href = PERSONAL_INFO.resumeUrl;
-            document.getElementById('github-link').href = PERSONAL_INFO.socials.github;
-            document.getElementById('linkedin-link').href = PERSONAL_INFO.socials.linkedin;
-            document.getElementById('twitter-link').href = PERSONAL_INFO.socials.twitter;
-            document.getElementById('view-more-github').href = PERSONAL_INFO.socials.github;
-
-
-            // --- Skills Population ---
-            const skillsContainer = document.getElementById('skills-container');
-            SKILLS.forEach(skill => {
-                const skillTag = document.createElement('span');
-                skillTag.className = 'bg-blue-100 text-blue-800 text-sm font-medium px-4 py-2 rounded-full';
-                skillTag.textContent = skill;
-                skillsContainer.appendChild(skillTag);
-            });
-
-
-            // --- Mobile Menu Toggle ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            // Close menu when a link is clicked
-            mobileMenu.addEventListener('click', (e) => {
-                if (e.target.tagName === 'A') {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-
-
-            // --- Fetch GitHub Projects ---
-            const projectGrid = document.getElementById('project-grid');
-            const loadingSpinner = document.getElementById('loading-spinner');
-            
-            fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&direction=desc`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok. Check username.');
-                    }
-                    return response.json();
-                })
-                .then(repos => {
-                    loadingSpinner.style.display = 'none';
-                    
-                    // Filter out forks AND the portfolio repository itself
-                    const filteredRepos = repos.filter(repo => {
-                        const isFork = repo.fork;
-                        const isPortfolio = repo.name.toLowerCase() === `${GITHUB_USERNAME.toLowerCase()}.github.io`;
-                        return !isFork && !isPortfolio;
-                    }).slice(0, NUMBER_OF_PROJECTS);
-                    
-                    if (filteredRepos.length === 0) {
-                        projectGrid.innerHTML = `<p class="text-gray-600 text-center col-span-full">No public repositories found for this user.</p>`;
-                        return;
-                    }
-
-                    filteredRepos.forEach(repo => {
-                        const projectCard = document.createElement('a');
-                        projectCard.href = repo.html_url;
-                        projectCard.target = '_blank';
-                        projectCard.className = 'bg-white p-6 rounded-lg shadow-md flex flex-col card-hover-effect';
-
-                        const languageColor = getLanguageColor(repo.language);
-
-                        projectCard.innerHTML = `
-                            <div class="flex-grow">
-                                <div class="flex items-center mb-3">
-                                    <i class="far fa-folder-open text-blue-500 mr-3 text-xl"></i>
-                                    <h3 class="font-bold text-lg text-gray-800 truncate">${repo.name}</h3>
-                                </div>
-                                <p class="text-gray-600 text-sm mb-4 h-20 overflow-hidden">${repo.description || 'No description provided.'}</p>
-                            </div>
-                            <div class="flex justify-between items-center text-sm text-gray-500 mt-auto">
-                                <div class="flex items-center">
-                                    <span class="h-3 w-3 rounded-full mr-2" style="background-color: ${languageColor};"></span>
-                                    <span>${repo.language || 'N/A'}</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="far fa-star mr-1"></i>
-                                    <span>${repo.stargazers_count}</span>
-                                </div>
-                            </div>
-                        `;
-                        projectGrid.appendChild(projectCard);
-                    });
-                })
-                .catch(error => {
-                    loadingSpinner.style.display = 'none';
-                    projectGrid.innerHTML = `<p class="text-red-500 text-center col-span-full">Error fetching projects: ${error.message}. Please check the GitHub username in the script configuration.</p>`;
-                    console.error('Error fetching GitHub repos:', error);
-                });
-
-            // Helper function for language colors
-            function getLanguageColor(language) {
-                const colors = {
-                    'Python': '#3572A5',
-                    'Jupyter Notebook': '#DA5B0B',
-                    'R': '#198CE7',
-                    'JavaScript': '#f1e05a',
-                    'HTML': '#e34c26',
-                    'CSS': '#563d7c',
-                    'TypeScript': '#2b7489',
-                    'Java': '#b07219',
-                    'Go': '#00ADD8',
-                    'C++': '#f34b7d',
-                    'null': '#cccccc'
-                };
-                return colors[language] || '#cccccc';
-            }
-
-        });
-    </script>
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('open'));
+  </script>
 </body>
 </html>
-
